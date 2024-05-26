@@ -1,0 +1,35 @@
+{
+  "name": "xcompute",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "license": "AGPL-version-3.0",
+  "private": false,
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": "",
+  "keywords": [],
+  "author": {
+    "name": "Devdeep Ghosh",
+    "email": "devarmforce01@gmail.com"
+  },
+  "contributors": [],
+  "scripts": {
+    "clean": "rm -rf dist",
+    "compile": "npx tsc",
+    "copy-assets": "robocopy E:\\nodeproject\\xcompute E:\\nodeproject\\xcompute\\dist /E /XD E:\\nodeproject\\xcompute\\src E:\\nodeproject\\xcompute\\dist E:\\nodeproject\\xcompute\\node_modules /XF E:\\nodeproject\\xcompute\\tsconfig.json",
+    "build": "npm run copy-assets && npm run compile"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.268",
+    "typescript": "^5.4.5"
+  }
+}
