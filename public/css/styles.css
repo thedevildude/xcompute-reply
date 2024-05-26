@@ -9,3 +9,11 @@
   padding: 20px;
   border: 1px solid black;
 }
+
+.x-compute-button {
+  width: 20px;
+  height: 20px;
+  border-radius: 60%;
+  margin: auto;
+  cursor: pointer;
+}

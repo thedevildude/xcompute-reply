@@ -4,5 +4,9 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
       target: { tabId: tabId },
       files: ["main.js"],
     });
+    chrome.scripting.insertCSS({
+      target: { tabId: tabId },
+      files: ["/css/styles.css"],
+    });
   }
 });

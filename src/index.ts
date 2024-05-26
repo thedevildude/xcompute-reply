@@ -24,24 +24,31 @@ const observeElement = (
   observer.observe(targetNode, config);
 };
 
-const addButtonToToolbar = (toolbar: Element) => {
-  // Check if the button already exists
-  if (toolbar.querySelector('.x-compute-button')) {
+const handleXComputeClick = () => {
+  alert("Button clicked!");
+};
+const addButtonToToolbar = () => {
+  // Find the textarea element
+  const textarea = document.querySelector('[data-testid="tweetTextarea_0"]');
+  if (!textarea) {
+    console.error("Textarea element not found.");
     return;
   }
-  
-  const button = document.createElement("button");
-  button.textContent = "Click Me";
-  button.className = "x-compute-button";
-  button.addEventListener("click", () => {
-    alert("Button clicked!");
-  });
+  const nextSibling = textarea.nextSibling as HTMLElement;
+  if (nextSibling && nextSibling.classList && nextSibling.classList.contains('x-compute-button')) {
+    return;
+  }
+  const imgSrc = `chrome-extension://${chrome.runtime.id}/icon16.png`;
+  const imgElement = document.createElement("img");
+  imgElement.src = imgSrc;
+  imgElement.className = "x-compute-button";
+  imgElement.addEventListener("click", handleXComputeClick);
 
-  toolbar.appendChild(button);
+  // Appends the image element beside the textarea
+  textarea.parentNode?.insertBefore(imgElement, textarea.nextSibling);
 };
 
-// Detect when the toolbar is added to the DOM and add a button to it
-observeElement('[data-testid="toolBar"]', (toolbar) => {
-  addButtonToToolbar(toolbar);
+observeElement('[data-testid="toolBar"]', () => {
+  addButtonToToolbar();
   console.log("Button added to toolbar");
 });

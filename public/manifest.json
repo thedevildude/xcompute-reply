@@ -19,5 +19,11 @@
   "host_permissions": ["https://*.x.com/*"],
   "externally_connectable": {
     "matches": ["https://x.com/*"]
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "matches": ["https://*.x.com/*"],
+      "resources": ["icon16.png", "icon32.png"]
+    }
+  ]
 }
