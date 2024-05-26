@@ -5,7 +5,7 @@ module.exports = {
    entry: {
       background: path.resolve(__dirname, "..", "src", "background", "index.ts"),
       main: path.resolve(__dirname, "..", "src", "index.ts"), // Entry point for injected script
-      observer: path.resolve(__dirname, "..", "src", "observer.ts"), // Observer utility
+      utils: path.resolve(__dirname, "..", "src", "utils.ts"), // Observer utility
 
    },
    output: {

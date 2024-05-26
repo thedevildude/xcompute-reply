@@ -23,7 +23,7 @@
   "web_accessible_resources": [
     {
       "matches": ["https://*.x.com/*"],
-      "resources": ["icon16.png", "icon32.png"]
+      "resources": ["icon16.png", "icon32.png", "icon32-black.png"]
     }
   ]
 }
