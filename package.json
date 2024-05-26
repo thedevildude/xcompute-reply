@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
+  "type": "commonjs",
   "license": "AGPL-version-3.0",
   "private": false,
   "engines": {
@@ -22,14 +22,18 @@
     "email": "devarmforce01@gmail.com"
   },
   "contributors": [],
-  "scripts": {
+    "scripts": {
     "clean": "rm -rf dist",
     "compile": "npx tsc",
     "copy-assets": "robocopy E:\\nodeproject\\xcompute E:\\nodeproject\\xcompute\\dist /E /XD E:\\nodeproject\\xcompute\\src E:\\nodeproject\\xcompute\\dist E:\\nodeproject\\xcompute\\node_modules /XF E:\\nodeproject\\xcompute\\tsconfig.json",
-    "build": "npm run copy-assets && npm run compile"
+    "build": "webpack --config webpack/webpack.config.js"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.268",
-    "typescript": "^5.4.5"
+    "copy-webpack-plugin": "^12.0.2",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.4.5",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
   }
 }
