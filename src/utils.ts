@@ -35,6 +35,25 @@ export const createImageElement = (
   return imageElement;
 };
 
+export const updateTweetTextArea = (tweetText: string) => {
+  const tweetTextArea = document.querySelectorAll(
+    '[data-text="true"], [data-testid="tweetTextarea_0"]'
+  );
+  tweetTextArea.forEach((tweetTextArea) => {
+    const range = document.createRange();
+    const selection = window.getSelection();
+
+    if (tweetTextArea) {
+      (tweetTextArea as HTMLElement).focus();
+      range.selectNodeContents(tweetTextArea);
+      range.collapse(false);
+      selection?.removeAllRanges();
+      selection?.addRange(range);
+      document.execCommand("insertHTML", false, tweetText ? tweetText : "");
+    }
+  });
+};
+
 export const styleText = `
 #x-compute-button-img {
   width: 25px;
@@ -64,4 +83,4 @@ export const styleText = `
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
-`
+`;

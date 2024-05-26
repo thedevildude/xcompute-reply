@@ -1,31 +1,17 @@
 console.log("Script Loaded");
-import { observeElement, createImageElement, styleText } from "./utils";
+import {
+  observeElement,
+  createImageElement,
+  styleText,
+  updateTweetTextArea,
+} from "./utils";
 
 const updateMainTweetText = () => {
   const tweetText = document.querySelector(
     '[data-testid="tweetText"]'
   )?.textContent;
-
-  // Find all tweet text areas (main tweet and replies)
-  const tweetTextAreas = document.querySelectorAll(
-    '[data-text="true"], [data-testid="tweetTextarea_0"]'
-  );
-
   alert(tweetText);
-
-  tweetTextAreas.forEach((tweetTextArea) => {
-    const range = document.createRange();
-    const selection = window.getSelection();
-
-    if (tweetTextArea) {
-      (tweetTextArea as HTMLElement).focus();
-      range.selectNodeContents(tweetTextArea);
-      range.collapse(false);
-      selection?.removeAllRanges();
-      selection?.addRange(range);
-      document.execCommand("insertHTML", false, tweetText ? tweetText : "");
-    }
-  });
+  updateTweetTextArea(tweetText || "");
 };
 
 const updateRepliesTweetText = () => {
@@ -34,33 +20,15 @@ const updateRepliesTweetText = () => {
     console.error("Button container not found.");
     return;
   }
-
   // Find the parent cellInnerDiv of the button container
   const cellInnerDiv = xComputeButton.closest('[data-testid="cellInnerDiv"]');
   const tweetText = cellInnerDiv?.querySelector(
     '[data-testid="tweetText"]'
   )?.textContent;
 
-  // Find all tweet text areas (main tweet and replies)
-  const tweetTextAreas = document.querySelectorAll(
-    '[data-text="true"], [data-testid="tweetTextarea_0"]'
-  );
-
   alert(tweetText);
 
-  tweetTextAreas.forEach((tweetTextArea) => {
-    const range = document.createRange();
-    const selection = window.getSelection();
-
-    if (tweetTextArea) {
-      (tweetTextArea as HTMLElement).focus();
-      range.selectNodeContents(tweetTextArea);
-      range.collapse(false);
-      selection?.removeAllRanges();
-      selection?.addRange(range);
-      document.execCommand("insertHTML", false, tweetText ? tweetText : "");
-    }
-  });
+  updateTweetTextArea(tweetText || "");
 };
 
 const addButtonToToolbar = (toolBar: Element) => {
@@ -74,14 +42,14 @@ const addButtonToToolbar = (toolBar: Element) => {
     const repliesTweetImgSrc = `chrome-extension://${chrome.runtime.id}/icon32.png`;
     const mainTweetImgSrc = `chrome-extension://${chrome.runtime.id}/icon32-black.png`;
 
-    // This selects the current reply tweet from the tweet thread
+    // Selects the current reply tweet from the tweet thread
     const repliesTweetImage = createImageElement(
       repliesTweetImgSrc,
       "x-compute-button-img",
       updateRepliesTweetText
     );
 
-    // This selects the current tweet thread's original tweet
+    // Selects the current tweet thread's original tweet
     const mainTweetImage = createImageElement(
       mainTweetImgSrc,
       "x-compute-button-img",
